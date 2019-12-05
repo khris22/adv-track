@@ -27,6 +27,9 @@ gem 'pry'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
+# To secure our keys
+gem 'dotenv-rails'
+gem 'thin'
 gem 'faker', '~> 2.8'
 
 # Use Active Storage variant
