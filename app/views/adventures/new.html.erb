@@ -11,5 +11,10 @@
     <%= f.label :is_wishlist? %>
     <%= f.check_box :is_wishlist? %>
 
+    <!--Select Location -->
+    <%= f.label :location_id, "Select a Location" %>
+    <!--collecion_select :###_id, ALL, :value, :display_value -->
+    <%= f.collection_select :location_id, Location.all, :id, :state,  prompt: true %>
+
     <%= f.submit%>
 <% end %>
