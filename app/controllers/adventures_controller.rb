@@ -1,4 +1,13 @@
 class AdventuresController < ApplicationController
+
+    def index
+        @adventures = Adventure.all
+    end
+
+    def new
+        @adventure = Adventure.new
+    end
+
     def create
         adventure = Adventure.create(user_id: current_user.id, location_id: params[:location][:location_id])
     end
@@ -6,6 +15,23 @@ class AdventuresController < ApplicationController
     def show
         @adventure = Adventure.find(params[:id])
     end
+
+    def edit
+        @adventure = Adventure.find(params[:id])
+    end
+
+    def update
+        @adventure = Adventure.find(params[:id])
+        @adventure.update(adventure_params)
+        redirect_to adventure_path(@adventure)
+    end
+
+    def destroy
+        @adventure = Adventure.find(params[:id])
+        @adventure.destroy
+        redirect_to adventures_path
+    end
+
 
     private
 
