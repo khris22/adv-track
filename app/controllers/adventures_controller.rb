@@ -9,7 +9,13 @@ class AdventuresController < ApplicationController
     end
 
     def create
-        adventure = Adventure.create(user_id: current_user.id, location_id: params[:location][:location_id])
+        @adventure = current_user.adventures.build(adventure_params)
+        if @adventure.save
+            redirect_to adventure_path(@adventure)
+        else
+            render 'new'
+        end
+        # adventure = Adventure.create(user_id: current_user.id, location_id: params[:location][:location_id])
     end
 
     def show
