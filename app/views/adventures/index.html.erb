@@ -1,16 +1,15 @@
+
+
 <ul>
 <% @adventures.each do |adventure| %>
 <li><%=link_to adventure.name , adventure_path(adventure) %>
 - <%= link_to adventure.location.try(:state), location_path(adventure.location) %>
-
-
-
 </li>
 <% end %>
 </ul>
 
 <%# if current_user == %>
-<%# link_to 'Add a New Adventure', new_user_adventure_path %>
+<%= link_to 'Add a New Adventure', new_adventure_path %>
 <%# end %>
 
 <%# link_to adventure.location.state if adventure.location, location_path(adventure.location) %>

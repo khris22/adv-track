@@ -1,20 +1,3 @@
 <h1>Create your new adventure</h1>
 
- <%= form_for @adventure do |f| %>
-
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :recommendation %>
-    <%= f.text_area :recommendation %>
-
-    <%= f.label :is_wishlist? %>
-    <%= f.check_box :is_wishlist? %>
-
-    <!--Select Location -->
-    <%= f.label :location_id, "Select a Location" %>
-    <!--collecion_select :###_id, ALL, :value, :display_value -->
-    <%= f.collection_select :location_id, Location.all, :id, :state,  prompt: true %>
-
-    <%= f.submit%>
-<% end %>
+ <%= render partial: 'adventure_form' %>
