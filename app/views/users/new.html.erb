@@ -1,6 +1,12 @@
 <h1>Sign Up</h1>
 
 <%= form_for @user do |f| %>
+
+    <!-- Showing error messages after render -->
+    <% @user.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+    <% end %>
+
     <%= f.label :username %>
     <%= f.text_field :username %>
 
