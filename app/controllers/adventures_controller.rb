@@ -1,11 +1,17 @@
 class AdventuresController < ApplicationController
+    before_action :authenticate_user
 
     def index
         @adventures = Adventure.all
     end
 
     def new
-        @adventure = Adventure.new
+        #nested
+        if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
+            @adventure = @location.adventures.build
+        else #not nested
+            @adventure = Adventure.new
+        end
     end
 
     def create
@@ -20,6 +26,7 @@ class AdventuresController < ApplicationController
 
     def show
         @adventure = Adventure.find(params[:id])
+        # @user = User.find_by(id: params[:id])
     end
 
     def edit
