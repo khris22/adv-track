@@ -1,10 +1,8 @@
 <h1>Log In</h1>
 
-<%= form_for @user, url: login_path do |f| %>
+<%= flash[:error] %>
 
-    <% @user.errors.full_messages.each do |error| %>
-        <li><%= error %></li>
-    <% end %>
+<%= form_for @user, url: login_path do |f| %>
 
     <%= f.label :username %>
     <%= f.text_field :username %>

@@ -3,10 +3,11 @@
 <%= form_for @user do |f| %>
 
     <!-- Showing error messages after render -->
-    <% @user.errors.full_messages.each do |error| %>
-        <li><%= error %></li>
-    <% end %>
+    <%# render 'layouts/error_messages', locals: {object: @user}  %>
+    <%= render partial: 'layouts/error_messages', locals: {object: @user} %>
+    
 
+  
     <%= f.label :username %>
     <%= f.text_field :username %>
 

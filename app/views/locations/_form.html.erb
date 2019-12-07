@@ -1,5 +1,7 @@
 <%= form_for @location do |f| %>
 
+    <%= render partial: 'layouts/error_messages', locals: {object: @location} %>
+
     <%= f.label :city %>
     <%= f.text_field :city %>
 
