@@ -1,6 +1,11 @@
 <h1>Log In</h1>
 
 <%= form_for @user, url: login_path do |f| %>
+
+    <% @user.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+    <% end %>
+
     <%= f.label :username %>
     <%= f.text_field :username %>
 

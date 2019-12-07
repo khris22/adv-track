@@ -10,6 +10,7 @@ class UsersController < ApplicationController
             redirect_to adventures_path
         else
             render 'new'
+            #div class="field_with_errors" will only happen in render
         end
     end
 
