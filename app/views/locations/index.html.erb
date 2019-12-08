@@ -1,5 +1,9 @@
 <ul>
 <% @locations.each do |location| %>
-<li><%=link_to location.state , location_path(location) %></li>
+<li><%=link_to location.state, location_path(location) %>
+    <ol>
+    <%=link_to location.adventures.name, location_adventures_path(location) %>
+    </ol>
+</li>
 <% end %>
 </ul>

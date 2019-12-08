@@ -2,19 +2,26 @@ class AdventuresController < ApplicationController
     before_action :authenticate_user
 
     def index
-        @adventures = Adventure.all
+        # @adventure = Adventure.find(params[:id])
+        # @location = Location.find_by(id: params[:id])
+        if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
+            @adventures = @location.adventures
+        else
+            @adventures = Adventure.all
+        end
     end
 
     def new
         #nested
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
-            @adventure = @location.adventures.build
+            @adventure = @location.adventures.build #building nested route
         else #not nested
             @adventure = Adventure.new
         end
     end
 
     def create
+        # @location = Location.find_by_id(params[:location_id])
         @adventure = current_user.adventures.build(adventure_params)
         if @adventure.save
             redirect_to adventure_path(@adventure)

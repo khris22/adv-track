@@ -8,9 +8,15 @@
 <% end %>
 </ul>
 
-<%# if current_user == %>
-<%= link_to 'Add a New Adventure', new_adventure_path %>
-<%# end %>
+<%= link_to 'Add a New Adventure', new_adventure_path %><br><br>
+
+
+<%= link_to 'Show LOCATIONS', locations_path %><br><br>
+
+<%# for nested routes %>
+<% if @location %>
+<%= link_to 'NESTED ROUTE: Add a New Adventure', new_location_adventure_path %>
+<% end %>
 
 <%# link_to adventure.location.state if adventure.location, location_path(adventure.location) %>
 <%# try %>

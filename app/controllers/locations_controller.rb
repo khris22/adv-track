@@ -1,7 +1,9 @@
 class LocationsController < ApplicationController
+    before_action :authenticate_user
 
     def index
-        @locations = Location.all
+        # binding.pry
+        @locations = current_user.locations
     end
 
     def new

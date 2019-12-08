@@ -10,10 +10,16 @@ Rails.application.routes.draw do
   get '/auth/github/callback' => 'sessions#create'
 
   #nested routes
-  resources :adventures do
-    resources :locations
+  # resources :adventures do
+  #   resources :locations
+  #   resources :categories
+  # end
+
+  resources :locations do
+    resources :adventures, only: [:index, :new, :create]
     # resources :categories
   end
+  
 
 
   resources :adventures
