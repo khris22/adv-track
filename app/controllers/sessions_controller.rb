@@ -37,16 +37,28 @@ class SessionsController < ApplicationController
         end
     end
 
+    def ghcreate
+        # binding.pry
+        @user = User.find_or_create_by(auth_id: auth['uid']) do |u|
+            # u.auth_id = auth['uid']
+            u.username = auth['info']['name']
+            u.email = auth['info']['email']
+            u.password = auth['uid'] #SecureRandom.hex
+        end
+        session[:user_id] = @user.id 
+        redirect_to adventures_path
+    end
+
     def destroy
         session.clear
         # session.delete(:user_id)
         redirect_to root_path
     end
-
-    private
     
+    private
+
     def auth
-        request.env["omniauth.auth"]["extra"]["raw_info"]
+      request.env['omniauth.auth']
     end
     
 end
