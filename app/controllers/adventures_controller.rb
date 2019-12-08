@@ -7,7 +7,7 @@ class AdventuresController < ApplicationController
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
             @adventures = @location.adventures
         else
-            @adventures = Adventure.all
+            @adventures = current_user.adventures
         end
     end
 
