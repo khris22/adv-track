@@ -37,7 +37,11 @@ class LocationsController < ApplicationController
     private
 
     def location_params
-        params.require(:location).permit(:city, :state, :description)
+        params.require(:location).permit(:city, :state, :description, adventures_attributes: [
+            :name,
+            :recommendation,
+            :is_wishlist?
+          ])
     end
 
 end

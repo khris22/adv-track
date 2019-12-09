@@ -1,20 +1,35 @@
-<%= form_for([@adventure.location, @adventure]) do |f| %>
+<%# form_for([@adventure.location, @adventure]) do |f| %>
+<%= form_for @adventure do |f| %>
 
     <%= render partial: 'layouts/error_messages', locals: {object: @adventure} %>
 
     <%= f.label :name %>
     <%= f.text_field :name %>
 
-    <%= f.label :recommendation %>
-    <%= f.text_area :recommendation %>
-
     <%= f.label :is_wishlist? %>
     <%= f.check_box :is_wishlist? %>
 
+    <%= f.label :recommendation %>
+    <%= f.text_area :recommendation %>
+
     <!--Select Location -->
-    <%= f.label :location_id, "Select a Location" %>
+    <%# f.label :location_id, "Select a Location" %>
     <!--collecion_select :###_id, ALL, :value, :display_value -->
-    <%= f.collection_select :location_id, Location.all, :id, :state,  prompt: true %>
+    <%# f.collection_select :location_id, Location.all, :id, :state,  prompt: true %>
+
+<h4>Adventure Location</h4> 
+    <%= f.fields_for :location do |adv| %>
+        <%= adv.label :city %>
+        <%= adv.text_field :city %>
+
+        <%= adv.label :state %>
+        <%= adv.select :state, options_for_states, :prompt => 'Please choose one' %>
+       
+        <%= adv.label :description %>
+        <%= adv.text_area :description %>
+    <% end %>
+ 
+
 
     <%= f.submit%>
 <% end %>

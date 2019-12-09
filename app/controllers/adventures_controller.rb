@@ -14,9 +14,10 @@ class AdventuresController < ApplicationController
     def new
         #nested
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
-            @adventure = @location.adventures.build #building nested route
+            @adventure = @location.adventures.build #building nested route .build for has_many
         else #not nested
             @adventure = Adventure.new
+            @adventure.build_location #bec of belongs_to, will return nil if there adventure has no location
         end
     end
 
@@ -37,7 +38,9 @@ class AdventuresController < ApplicationController
     end
 
     def edit
+        # binding.pry
         @adventure = Adventure.find(params[:id])
+        # @location = Location.find_by_id(params[:location_id])
     end
 
     def update
@@ -56,7 +59,7 @@ class AdventuresController < ApplicationController
     private
 
     def adventure_params
-        params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist?)
+        params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist?, location_attributes: [:city, :state, :description])
     end
 
 end
