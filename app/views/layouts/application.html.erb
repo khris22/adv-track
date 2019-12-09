@@ -10,8 +10,12 @@
   </head>
 
   <body>
+  <h2>Header logo here!</h2>
   <!-- Use this for now -->
+  <% if logged_in? %>
+    <%= link_to 'Home', adventures_path %>
     <%= link_to 'Log Out', logout_path %>
+  <% end %>
     <%= yield %>
   </body>
 </html>
