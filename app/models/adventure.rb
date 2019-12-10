@@ -11,8 +11,13 @@ class Adventure < ApplicationRecord
     # end
 
     scope :is_wishlist, -> { where(is_wishlist: true)}
+    # scope :desc, order(name: :desc)
+    default_scope { order(created_at: :desc)}
+
 
     # def self.is_wishlist
     #     where(is_wishlist: true)
     # end
+
+    validates :name, uniqueness: true
 end
