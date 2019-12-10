@@ -2,6 +2,8 @@ class AdventuresController < ApplicationController
     before_action :authenticate_user
 
     def index
+        # binding.pry
+        @wishlists = Adventure.is_wishlist?
         # @adventure = Adventure.find(params[:id])
         # @location = Location.find_by(id: params[:id])
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
@@ -25,6 +27,7 @@ class AdventuresController < ApplicationController
         # @location = Location.find_by_id(params[:location_id])
         @adventure = current_user.adventures.build(adventure_params)
         if @adventure.save
+            # raise inspect.params
             redirect_to adventure_path(@adventure)
         else
             render 'new'
@@ -34,6 +37,7 @@ class AdventuresController < ApplicationController
 
     def show
         @adventure = Adventure.find(params[:id])
+        # binding.pry
         # @user = User.find_by(id: params[:id])
     end
 
@@ -59,7 +63,7 @@ class AdventuresController < ApplicationController
     private
 
     def adventure_params
-        params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist?, location_attributes: [:city, :state, :description])
+        params.require(:adventure).permit(:id, :user_id, :location_id, :name, :recommendation, :is_wishlist?, location_attributes: [:city, :state, :description])
     end
 
 end

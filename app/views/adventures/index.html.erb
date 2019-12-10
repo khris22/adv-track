@@ -7,9 +7,9 @@
 </li>
 <% end %>
 </ul>
-
+<% if !@location %>
 <%= link_to 'Add a New Adventure', new_adventure_path %><br><br>
-
+<% end %>
 
 <%= link_to 'Show LOCATIONS', locations_path %><br><br>
 
@@ -20,3 +20,8 @@
 
 <%# link_to adventure.location.state if adventure.location, location_path(adventure.location) %>
 <%# try %>
+
+<h4>Wishlist:</h4>
+<% @wishlists.each do |wishlist| %>
+<%= wishlist.name %>
+<% end %>
