@@ -11,6 +11,7 @@ class Adventure < ApplicationRecord
     # end
 
     scope :is_wishlist, -> { where(is_wishlist: true)}
+    scope :adventure_done, -> { where(is_wishlist: false)}
     # scope :desc, order(name: :desc)
     default_scope { order(created_at: :desc)}
 
