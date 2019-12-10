@@ -10,9 +10,9 @@ class Adventure < ApplicationRecord
     #     self.location = location if location.valid? || !self.location
     # end
 
-    scope :is_wishlist?, -> { where(is_wishlist?: true)}
+    scope :is_wishlist, -> { where(is_wishlist: true)}
 
-    # def self.is_wishlist?
-    #     where(is_wishlist?: true)
+    # def self.is_wishlist
+    #     where(is_wishlist: true)
     # end
 end

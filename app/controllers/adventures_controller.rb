@@ -3,7 +3,7 @@ class AdventuresController < ApplicationController
 
     def index
         # binding.pry
-        @wishlists = Adventure.is_wishlist?
+        @wishlists = Adventure.is_wishlist
         # @adventure = Adventure.find(params[:id])
         # @location = Location.find_by(id: params[:id])
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
@@ -63,7 +63,7 @@ class AdventuresController < ApplicationController
     private
 
     def adventure_params
-        params.require(:adventure).permit(:id, :user_id, :location_id, :name, :recommendation, :is_wishlist?, location_attributes: [:city, :state, :description])
+        params.require(:adventure).permit(:id, :user_id, :location_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state, :description])
     end
 
 end

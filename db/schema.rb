@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_08_200918) do
+ActiveRecord::Schema.define(version: 2019_12_10_042816) do
 
   create_table "adventures", force: :cascade do |t|
     t.integer "user_id"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_12_08_200918) do
     t.text "recommendation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_wishlist?", default: false
+    t.boolean "is_wishlist", default: false
   end
 
   create_table "locations", force: :cascade do |t|
