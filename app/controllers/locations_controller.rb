@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
 
     def index
         # binding.pry
-        @locations = current_user.locations
+        @locations = current_user.locations #.uniq.pluck(:state)
     end
 
     def new
