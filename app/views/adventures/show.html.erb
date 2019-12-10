@@ -1,12 +1,12 @@
 <h1>Adventure Show Page</h1>
 
-<%= @adventure.name %>
+<%= @adventure.name %><br><br>
 
-<%= @adventure.recommendation%>
+<%= @adventure.recommendation%><br><br>
 
-<%= @adventure.location.state %>
+<%= @adventure.location.state %><br><br>
 
-<%= link_to 'Edit Adventure', edit_adventure_path(@adventure) %>
+<%= link_to 'Edit Adventure', edit_adventure_path(@adventure) %><br><br>
 
 <%= link_to 'Delete this Adventure', adventure_path(@adventure), method: :delete%>
 

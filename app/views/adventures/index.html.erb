@@ -1,27 +1,37 @@
+<h2><%= current_user.username %>'s adventures:</h2>
 
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Adventure</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @adventures.each do |adventure| %>
+        <tr>
+            <td><%= adventure.created_at.strftime("%B %d, %Y, %A") %></td> 
+            <td><%=link_to adventure.name , adventure_path(adventure) %></td>
+            <%# link_to adventure.location.try(:state), location_path(adventure.location) %>
+        </tr>
+        <% end %>
+    </tbody>
+</table><br><br>
 
-<ul>
-<% @adventures.each do |adventure| %>
-<li><%=link_to adventure.name , adventure_path(adventure) %>
-- <%= link_to adventure.location.try(:state), location_path(adventure.location) %>
-</li>
-<% end %>
-</ul>
 <% if !@location %>
-<%= link_to 'Add a New Adventure', new_adventure_path %><br><br>
+    <%= link_to 'Add a New Adventure', new_adventure_path %><br><br>
+    <%= link_to 'Show LOCATIONS', locations_path %><br><br>
+    <h4>Wishlist:</h4>
+        <% @wishlists.each do |wishlist| %>
+        <li><%= link_to wishlist.name, adventure_path(wishlist) %></li>
+    <% end %>
 <% end %>
-
-<%= link_to 'Show LOCATIONS', locations_path %><br><br>
 
 <%# for nested routes %>
 <% if @location %>
-<%= link_to 'NESTED ROUTE: Add a New Adventure', new_location_adventure_path %>
+    <%= link_to 'NESTED ROUTE: Add a New Adventure', new_location_adventure_path %>
 <% end %>
 
 <%# link_to adventure.location.state if adventure.location, location_path(adventure.location) %>
 <%# try %>
 
-<h4>Wishlist:</h4>
-<% @wishlists.each do |wishlist| %>
-<%= wishlist.name %>
-<% end %>

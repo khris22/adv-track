@@ -1,3 +1,4 @@
+<h2>You have been to <%= @locations.count %> locations</h2>
 <ul>
 <% @locations.each do |location| %>
 <li><%= location.state %> - <%=link_to location.adventures.name, location_adventures_path(location) %></li>
