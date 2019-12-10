@@ -9,4 +9,10 @@ class Adventure < ApplicationRecord
     #     location = Location.find_or_create_by(attributes)
     #     self.location = location if location.valid? || !self.location
     # end
+
+    scope :is_wishlist?, -> { where(is_wishlist?: true)}
+
+    # def self.is_wishlist?
+    #     where(is_wishlist?: true)
+    # end
 end
