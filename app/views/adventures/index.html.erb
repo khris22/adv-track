@@ -1,5 +1,4 @@
 <h2><%= current_user.username %>'s  Adventures:</h2>
-
 <table>
     <thead>
         <tr>
@@ -26,8 +25,8 @@
     <%= link_to 'Add a New Adventure', new_adventure_path %><br><br>
     <%= link_to 'Show LOCATIONS', locations_path %><br><br>
     <h4>Wishlist:</h4>
-        <% @wishlists.each do |wishlist| %>
-        <li><%= link_to wishlist.name, adventure_path(wishlist) %></li>
+        <% @wishlists.each do |wishlist| %>  
+        <li><%= link_to wishlist.name, adventure_path(wishlist) %> - <%= wishlist.location.state%></li>
     <% end %>
 <% end %>
 

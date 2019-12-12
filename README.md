@@ -1,8 +1,8 @@
-# Adventure Tracker
+# TrekIt
 
 ## Overview
 
-Adventure Tracker is a Rails application that allows users who like doing outdoor activities to track all their adventures. To be able to use the site, the user must sign up first with a unique username, email and password. It will then redirect you to your homepage once you have successfully signed up.  
+TrekIt is a Rails application that allows users who like doing outdoor activities to track all their adventures. To be able to use the site, the user must sign up first with a unique username, email and password. It will then redirect you to your homepage once you have successfully signed up.  
 
 ## Installation
 

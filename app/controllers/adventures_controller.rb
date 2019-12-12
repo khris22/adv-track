@@ -1,13 +1,12 @@
 class AdventuresController < ApplicationController
-    before_action :authenticate_user
+    before_action :authenticate_user 
+    before_action :set_adventure, :redirect_if_wrong_user, only: [:edit, :update, :destroy]
+    
 
     def index
-        # binding.pry
-        @wishlists = current_user.adventures.is_wishlist
-        # @adventure = Adventure.find(params[:id])
-        # @location = Location.find_by(id: params[:id])
+        @wishlists = current_user.adventures.is_wishlist #scope method
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
-            @adventures = @location.adventures.adventure_done
+            @adventures = @location.adventures.adventure_done #scope method
         else
             @adventures = current_user.adventures.adventure_done
         end
@@ -19,7 +18,7 @@ class AdventuresController < ApplicationController
             @adventure = @location.adventures.build #building nested route .build for has_many
         else #not nested
             @adventure = Adventure.new
-            @adventure.build_location #bec of belongs_to, will return nil if there adventure has no location
+            @adventure.build_location #bec of belongs_to, will return nil if the adventure has no location
         end
     end
 
@@ -27,14 +26,11 @@ class AdventuresController < ApplicationController
         # binding.pry
         #nested
         # if current_user && @location = Location.find_by_id(params[:location_id])
-           
         #     @adventure = @location.adventures.build(adventure_params)
-        #     binding.pry
         #     if @adventure.save
         #         redirect_to location_adventure_path(@adventure)
         #     end
-        # else
-        
+        # else     
             # @location = Location.find_by_id(params[:location_id])
             @adventure = current_user.adventures.build(adventure_params)
             # @adventure.location = @location
@@ -56,32 +52,39 @@ class AdventuresController < ApplicationController
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
             @adventure = @location.adventures.find_by(id: params[:id])
         else
-            @adventure = Adventure.find(params[:id])
-        # binding.pry
-        # @user = User.find_by(id: params[:id])
+            set_adventure
         end
     end
 
     def edit
-        # binding.pry
-        @adventure = Adventure.find(params[:id])
-        # @location = Location.find_by_id(params[:location_id])
+        set_adventure
     end
 
     def update
-        @adventure = Adventure.find(params[:id])
+        set_adventure
         @adventure.update(adventure_params)
         redirect_to adventure_path(@adventure)
     end
 
     def destroy
-        @adventure = Adventure.find(params[:id])
+        set_adventure
         @adventure.destroy
         redirect_to adventures_path
     end
 
 
     private
+
+    def set_adventure
+        @adventure = Adventure.find(params[:id])
+    end
+
+    def redirect_if_wrong_user
+        if current_user != @adventure.user
+            flash[:error] = "You are not authorized to edit ot delete this adventure!"
+            redirect_to adventures_path
+        end
+    end
 
     def adventure_params
         params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state])

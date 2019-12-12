@@ -4,18 +4,31 @@
     <title>AdvTrack</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <title>TrekIt</title>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <h2>Header logo here!</h2>
-  <!-- Use this for now -->
-  <% if logged_in? %>
-    <%= link_to 'Home', adventures_path %>
-    <%= link_to 'Log Out', logout_path %>
-  <% end %>
-    <%= yield %>
+  <h2>Header logo here! TrekIt</h2>
+        <!-- NAV BAR -->
+        <% if logged_in? %>
+          <%= link_to 'Home', adventures_path %>
+          <%= link_to 'Log Out', logout_path %>
+        <% end %>
+
+        <!-- Flash Messages -->
+        <% flash.keys.each do |type| %>
+        <strong><t style="color: red;"><%= flash[type] %></t></strong>
+        <% end %>
+
+        <!-- Other views info -->
+        <%= yield %>
+
+    <footer class="branding">
+      <small>&copy; 2019 <strong>TrekIt</strong></small>
+    </footer>
   </body>
 </html>
