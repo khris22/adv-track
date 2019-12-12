@@ -25,22 +25,23 @@ class AdventuresController < ApplicationController
     def create
         # binding.pry
         #nested
-        # if current_user && @location = Location.find_by_id(params[:location_id])
+        # if current_user && @location = Location.find_by(id: params[:adventure][:location_id])
         #     @adventure = @location.adventures.build(adventure_params)
         #     if @adventure.save
         #         redirect_to location_adventure_path(@adventure)
         #     end
         # else     
-            # @location = Location.find_by_id(params[:location_id])
+            # @location = Location.find_by(id: params[:adventure][:location_id])
             @adventure = current_user.adventures.build(adventure_params)
-            # @adventure.location = @location
+            @adventure.location = @location
+            # @adventure.user = current_user
             # @location.adventures = @adventure
             # binding.pry
             if @adventure.save
                 # redirect_to adventure_path(@adventure)
                 # byebug
-                # redirect_to location_adventure_path(@adventure.location)
-                redirect_to adventure_path(@adventure)
+                redirect_to location_adventure_path(@adventure.location)
+                # redirect_to adventure_path(@adventure)
             else
                 render 'new'
             end
@@ -49,11 +50,12 @@ class AdventuresController < ApplicationController
     end
 
     def show
-        if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
-            @adventure = @location.adventures.find_by(id: params[:id])
-        else
+        # binding.pry
+        # if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
+        #     @adventure = @location.adventures.find_by(id: params[:id])
+        # else
             set_adventure
-        end
+        # end
     end
 
     def edit

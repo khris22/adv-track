@@ -2,7 +2,7 @@
 <%# form_for [@adventure.location, @adventure] do |f| %>
 <%= form_for @adventure do |f| %>
     <%# <%= f.hidden_field :user_id %> 
-    <%# <%= f.hidden_field :location_id %>
+    <%= f.hidden_field :location_id %> 
 
     <%= render partial: 'layouts/error_messages', locals: {object: @adventure} %>
 
@@ -22,6 +22,8 @@
 
 <h4>Adventure Location</h4> 
     <%= f.fields_for :location do |adv| %>
+        <%# adv.hidden_field :location_id %>
+
         <%= adv.label :city %>
         <%= adv.text_field :city %>
 
