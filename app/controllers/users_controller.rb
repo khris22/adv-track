@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user
+    
     
     def new
+        # raise inspect.params
         @user = User.new
     end
 

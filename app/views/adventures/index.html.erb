@@ -1,17 +1,21 @@
-<h2><%= current_user.username %>'s adventures:</h2>
+<h2><%= current_user.username %>'s  Adventures:</h2>
 
 <table>
     <thead>
         <tr>
             <th>Date</th>
             <th>Adventure</th>
+            <th>City</th>
+            <th>State</th>
         </tr>
     </thead>
     <tbody>
         <% @adventures.each do |adventure| %>
         <tr>
             <td><%= adventure.created_at.strftime("%B %d, %Y, %A") %></td> 
-            <td><%=link_to adventure.name , adventure_path(adventure) %></td>
+            <td><%= link_to adventure.name , adventure_path(adventure) %></td>
+            <td><%= adventure.location.try(:city) %></td>
+            <td><%= adventure.location.try(:state) %></td>
             <%# link_to adventure.location.try(:state), location_path(adventure.location) %>
         </tr>
         <% end %>

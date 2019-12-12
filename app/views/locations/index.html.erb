@@ -1,7 +1,26 @@
 <h2>You have been to <%= @locations.count %> locations</h2>
-<ul>
-<% @locations.each do |location| %>
-<li><%= location.state %> - <%=link_to location.adventures.name, location_adventures_path(location) %></li>
-<% end %>
-</ul>
 
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Adventure Log</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @locations.each do |location| %>
+        <tr>
+            <td><%= location.created_at.strftime("%B %d, %Y, %A") %></td> 
+            <td><%= location.city %>, <%= location.state %></td>
+            <td><%=link_to "Show Adventure", location_adventures_path(location) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table><br><br>
+
+    <%# location.adventures each do |adv| %>
+    <%# location.city %>
+    <%# location.adventures.each do |adventure| %>
+    <%# link_to adventure.name, adventure_path(adventure) %>
+    <%# end %>

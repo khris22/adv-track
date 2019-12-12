@@ -3,7 +3,8 @@ class LocationsController < ApplicationController
 
     def index
         # binding.pry
-        @locations = current_user.locations #.uniq.pluck(:state)
+        @locations = current_user.locations #.select('DISTINCT state') #.select(:name).distinct #.pluck(:state).uniq #.uniq.pluck(:state)
+        # binding.pry
     end
 
     def new

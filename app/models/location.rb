@@ -6,4 +6,6 @@ class Location < ApplicationRecord
 
     validates :city, :state, presence: true
     # validates :state, uniqueness: true
+    # validates_uniqueness_of  :state, scope: :city
+    # validates_uniqueness_of  :city, scope: :state
 end

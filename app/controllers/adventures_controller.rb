@@ -3,7 +3,7 @@ class AdventuresController < ApplicationController
 
     def index
         # binding.pry
-        @wishlists = Adventure.is_wishlist
+        @wishlists = current_user.adventures.is_wishlist
         # @adventure = Adventure.find(params[:id])
         # @location = Location.find_by(id: params[:id])
         if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
@@ -24,21 +24,42 @@ class AdventuresController < ApplicationController
     end
 
     def create
-        # @location = Location.find_by_id(params[:location_id])
-        @adventure = current_user.adventures.build(adventure_params)
-        if @adventure.save
-            # raise inspect.params
-            redirect_to adventure_path(@adventure)
-        else
-            render 'new'
-        end
+        # binding.pry
+        #nested
+        # if current_user && @location = Location.find_by_id(params[:location_id])
+           
+        #     @adventure = @location.adventures.build(adventure_params)
+        #     binding.pry
+        #     if @adventure.save
+        #         redirect_to location_adventure_path(@adventure)
+        #     end
+        # else
+        
+            # @location = Location.find_by_id(params[:location_id])
+            @adventure = current_user.adventures.build(adventure_params)
+            # @adventure.location = @location
+            # @location.adventures = @adventure
+            # binding.pry
+            if @adventure.save
+                # redirect_to adventure_path(@adventure)
+                # byebug
+                # redirect_to location_adventure_path(@adventure.location)
+                redirect_to adventure_path(@adventure)
+            else
+                render 'new'
+            end
         # adventure = Adventure.create(user_id: current_user.id, location_id: params[:location][:location_id])
+        # end
     end
 
     def show
-        @adventure = Adventure.find(params[:id])
+        if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
+            @adventure = @location.adventures.find_by(id: params[:id])
+        else
+            @adventure = Adventure.find(params[:id])
         # binding.pry
         # @user = User.find_by(id: params[:id])
+        end
     end
 
     def edit
@@ -63,7 +84,7 @@ class AdventuresController < ApplicationController
     private
 
     def adventure_params
-        params.require(:adventure).permit(:id, :user_id, :location_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state])
+        params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state])
     end
 
 end

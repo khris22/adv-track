@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # end
 
   resources :locations do
-    resources :adventures, only: [:index, :new, :create]
+    resources :adventures, only: [:index, :new, :create, :show]
     # resources :categories
   end
   
