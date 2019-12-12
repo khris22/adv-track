@@ -19,6 +19,6 @@ class Adventure < ApplicationRecord
     # def self.is_wishlist
     #     where(is_wishlist: true)
     # end
-
+    validates :name, :recommendation, presence: true
     validates :name, uniqueness: true
 end
