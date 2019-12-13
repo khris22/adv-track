@@ -9,24 +9,15 @@ Rails.application.routes.draw do
 
   get '/auth/github/callback' => 'sessions#ghcreate'
 
-  #nested routes
-  # resources :adventures do
-  #   resources :locations
-  #   resources :categories
-  # end
+  resources :adventures
+  # resources :locations
+  resources :users
 
-  resources :locations do
+  #nested
+  resources :locations, only: [:index, :show, :new, :create] do
     resources :adventures, only: [:index, :new, :create, :show]
     # resources :categories
   end
-  
-
-
-  resources :adventures
-  resources :locations
-  resources :users
-
-
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
