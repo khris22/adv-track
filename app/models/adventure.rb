@@ -3,11 +3,22 @@ class Adventure < ApplicationRecord
     belongs_to :location
     # belongs_to :category 
 
-    accepts_nested_attributes_for :location
+    # accepts_nested_attributes_for :location
+
+    def location_attributes=(attributes)
+        location = Location.find_or_create_by(attributes)
+        self.location = location if location.valid?
+    end
 
     # def location_attributes=(attributes)
-    #     location = Location.find_or_create_by(attributes)
-    #     self.location = location if location.valid? || !self.location
+    #     location = Location.find_or_create_by(city: attributes[:city])
+    #     self.location = location
+    # end
+
+    # def location_attributes=(attributes)
+    #     location = Location.find_or_create_by(id: attributes[:id])
+    #      binding.pry
+    #     self.location.update(attributes)
     # end
 
     scope :is_wishlist, -> { where(is_wishlist: true)}

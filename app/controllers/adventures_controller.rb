@@ -33,15 +33,16 @@ class AdventuresController < ApplicationController
         # else     
             # @location = Location.find_by(id: params[:adventure][:location_id])
             @adventure = current_user.adventures.build(adventure_params)
-            @adventure.location = @location
+            # @adventure.location_id = params[:adventure][:location_id]
+            # binding.pry
             # @adventure.user = current_user
             # @location.adventures = @adventure
             # binding.pry
             if @adventure.save
-                # redirect_to adventure_path(@adventure)
+                redirect_to adventure_path(@adventure)
                 # byebug
-                redirect_to location_adventure_path(@adventure.location)
-                # redirect_to adventure_path(@adventure)
+                # redirect_to location_adventure_path(@adventure.location)
+                # redirect_to location_adventure_path(@adventure.location, @adventure)
             else
                 render 'new'
             end
@@ -50,6 +51,7 @@ class AdventuresController < ApplicationController
     end
 
     def show
+        /locations/
         # binding.pry
         # if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
         #     @adventure = @location.adventures.find_by(id: params[:id])
@@ -89,7 +91,7 @@ class AdventuresController < ApplicationController
     end
 
     def adventure_params
-        params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state])
+        params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state, :id])
     end
 
 end
