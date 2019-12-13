@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    <div class="header-img"></div>
+   <header><center><img src="/images/Trekitlogo.png" alt="Adventure Tracker Header" class="img-responsive main-image"></center></header>
+
   <h2>Header logo here! TrekIt</h2>
         <!-- NAV BAR -->
         <% if logged_in? %>
@@ -20,8 +23,8 @@
         <% end %>
 
         <!-- Flash Messages -->
-        <% flash.keys.each do |type| %>
-        <strong><t style="color: red;"><%= flash[type] %></t></strong>
+       <% flash.keys.each do |type| %>
+        <p><strong><t style="color: red;"><%= flash[type] %></t></strong></p>
         <% end %>
 
         <!-- Other views info -->

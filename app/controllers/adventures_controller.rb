@@ -4,9 +4,9 @@ class AdventuresController < ApplicationController
     
 
     def index
-        @wishlists = current_user.adventures.is_wishlist #scope method
-        if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
-            @adventures = @location.adventures.adventure_done #scope method
+        @wishlists = current_user.adventures.is_wishlist #scope
+        if set_location
+            @adventures = @location.adventures.adventure_done #scope
         else
             @adventures = current_user.adventures.adventure_done
         end
@@ -14,7 +14,7 @@ class AdventuresController < ApplicationController
 
     def new
         #nested
-        if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
+        if set_location
             @adventure = @location.adventures.build #building nested route .build for has_many
         else #not nested
             @adventure = Adventure.new
@@ -23,41 +23,25 @@ class AdventuresController < ApplicationController
     end
 
     def create
-        # binding.pry
         #nested
-        # if current_user && @location = Location.find_by(id: params[:adventure][:location_id])
-        #     @adventure = @location.adventures.build(adventure_params)
-        #     if @adventure.save
-        #         redirect_to location_adventure_path(@adventure)
-        #     end
-        # else     
-            # @location = Location.find_by(id: params[:adventure][:location_id])
+        if current_user && @location = Location.find_by(id: params[:adventure][:location_id])
+            @adventure = @location.adventures.build(adventure_params)
+            @adventure.user = current_user
+            if @adventure.save
+                redirect_to location_adventure_path(@adventure.location, @adventure)
+            end
+        else #not nested   
             @adventure = current_user.adventures.build(adventure_params)
-            # @adventure.location_id = params[:adventure][:location_id]
-            # binding.pry
-            # @adventure.user = current_user
-            # @location.adventures = @adventure
-            # binding.pry
             if @adventure.save
                 redirect_to adventure_path(@adventure)
-                # byebug
-                # redirect_to location_adventure_path(@adventure.location)
-                # redirect_to location_adventure_path(@adventure.location, @adventure)
             else
                 render 'new'
             end
-        # adventure = Adventure.create(user_id: current_user.id, location_id: params[:location][:location_id])
-        # end
+        end
     end
 
     def show
-        /locations/
-        # binding.pry
-        # if params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
-        #     @adventure = @location.adventures.find_by(id: params[:id])
-        # else
-            set_adventure
-        # end
+        set_adventure
     end
 
     def edit
@@ -65,19 +49,23 @@ class AdventuresController < ApplicationController
     end
 
     def update
-        set_adventure
         @adventure.update(adventure_params)
+        flash[:notice] = "You have successfully updated your adventure entry!"
         redirect_to adventure_path(@adventure)
     end
 
     def destroy
-        set_adventure
         @adventure.destroy
+        flash[:notice] = "You have successfully deleted your adventure entry!"
         redirect_to adventures_path
     end
 
 
     private
+
+    def set_location
+        params[:location_id] &&  @location = Location.find_by_id(params[:location_id])
+    end
 
     def set_adventure
         @adventure = Adventure.find(params[:id])

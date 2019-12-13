@@ -2,9 +2,7 @@ class LocationsController < ApplicationController
     before_action :authenticate_user
 
     def index
-        # binding.pry
-        @locations = current_user.locations #.select('DISTINCT state') #.select(:name).distinct #.pluck(:state).uniq #.uniq.pluck(:state)
-        # binding.pry
+        @locations = current_user.locations.uniq
     end
 
     def new
@@ -24,25 +22,21 @@ class LocationsController < ApplicationController
         @location = Location.find_by(id: params[:id])
     end
 
-    def edit
-        @location = Location.find_by(id: params[:id])
-    end
+    # def edit
+    #     @location = Location.find_by(id: params[:id])
+    # end
 
-    def update
-        @location = Location.find_by(id: params[:id])
-        @location.update(location_params)
-        redirect_to location_path(@location)
-    end
+    # def update
+    #     @location = Location.find_by(id: params[:id])
+    #     @location.update(location_params)
+    #     redirect_to location_path(@location)
+    # end
 
 
     private
 
     def location_params
-        params.require(:location).permit(:city, :state, :description, adventures_attributes: [
-            :name,
-            :recommendation,
-            :is_wishlist?
-          ])
+        params.require(:location).permit(:city, :state)
     end
 
 end

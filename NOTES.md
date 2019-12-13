@@ -1,8 +1,8 @@
 # Plans
     After MVP for Project Requirements, work on:
-        - show on nested route 
+        - show on nested route - DONE
         - scope methods
-        - add categories
+        - add categories & scope on categories (e.g. hiking, camoing)
         - add bootsrap styling
         - add & learn 'devise'
         - 

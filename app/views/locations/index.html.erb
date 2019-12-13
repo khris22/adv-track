@@ -3,7 +3,6 @@
 <table>
     <thead>
         <tr>
-            <th>Date</th>
             <th>Location</th>
             <th>Adventure Log</th>
         </tr>
@@ -11,9 +10,8 @@
     <tbody>
         <% @locations.each do |location| %>
         <tr>
-            <td><%= location.created_at.strftime("%B %d, %Y, %A") %></td> 
             <td><%= location.city %>, <%= location.state %></td>
-            <td><%=link_to "Show Adventure", location_adventures_path(location) %></td>
+            <td><%=link_to "Show Adventures", location_adventures_path(location) %></td>
         </tr>
         <% end %>
     </tbody>
