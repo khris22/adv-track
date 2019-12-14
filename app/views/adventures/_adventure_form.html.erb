@@ -4,29 +4,39 @@
     <%= f.hidden_field :location_id %> 
 
     <%= render partial: 'layouts/error_messages', locals: {object: @adventure} %>
+    <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+    </div>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :recommendation %>
-    <%= f.text_area :recommendation %>
-
-    <%= f.label :is_wishlist, 'Add this to wishlist?' %>
+    <div class="form-group">
+    <%= f.label :recommendation, 'Notes & Recommendation:' %>
+    <%= f.text_area :recommendation, class: "form-control" %>
+    </div>
+   
+    <div class="form-group">
+    <%= f.label :is_wishlist, 'Add this to wishlist?', class: "form-check-label" %>
     <%= f.check_box :is_wishlist %>
+    </div>
+   
 
     <!--Select Location -->
     <%# f.label :location_id, "Select a Location" %>
     <!--collecion_select :###_id, ALL, :value, :display_value -->
     <%# f.collection_select :location_id, Location.all, :id, :state,  prompt: true %>
 
-<h4>Adventure Location</h4> 
+<p><h5>Adventure Location:</h5></p>
     <%= f.fields_for :location do |adv| %>
-        <%= adv.label :city %>
-        <%= adv.text_field :city %>
+        <div class="form-group">
+            <%= adv.label :city %>
+            <%= adv.text_field :city, class: "form-group col-md-6" %>
+        </div>
 
-        <%= adv.label :state %>
-        <%= adv.select :state, options_for_states, :prompt => 'Please choose one' %>
+        <div class="form-group">
+            <%= adv.label :state %>
+            <%= adv.select :state, options_for_states, :prompt => 'Please choose one' %>
+        </div>
     <% end %>
  
-    <%= f.submit%>
+    <p><%= f.submit class: "btn btn-primary" %></p>
 <% end %>

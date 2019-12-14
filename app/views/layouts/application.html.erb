@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdvTrack</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
     <title>TrekIt</title>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="header-img"></div>
-   <header><center><img src="/images/Trekitlogo.png" alt="Adventure Tracker Header" class="img-responsive main-image"></center></header>
-
-  <h2>Header logo here! TrekIt</h2>
+    <div class="container">
+    <div class="header-img">
+      <header><center><img src="/images/Trekitlogo.png" alt="Adventure Tracker Header" class="img-responsive main-image"></center></header>
+    </div>
         <!-- NAV BAR -->
+        <%# render 'navbar' %>
+        <ul class="nav justify-content-center">
         <% if logged_in? %>
-          <%= link_to 'Home', adventures_path %>
-          <%= link_to 'Log Out', logout_path %>
-        <% end %>
-
+        <li class="nav-item">
+          <%= link_to 'Home', adventures_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Log Out', logout_path, class: "nav-link active"  %>
+        <% end %> 
+        </li>
+        </ul>
         <!-- Flash Messages -->
-       <% flash.keys.each do |type| %>
-        <p><strong><t style="color: red;"><%= flash[type] %></t></strong></p>
+        <%# render './flash_messages' %>
+        
+        <% flash.keys.each do |type| %>
+        <div class="alert alert-danger" role="alert">
+        <h6><%= flash[type] %></h6>
+        </div>
         <% end %>
+        
 
         <!-- Other views info -->
         <%= yield %>
 
-    <footer class="branding">
+    <footer class="container card-footer">
       <small>&copy; 2019 <strong>TrekIt</strong></small>
     </footer>
+    </div>
   </body>
 </html>

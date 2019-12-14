@@ -1,13 +1,15 @@
-<h1>Adventure Show Page</h1>
+<div class="card">
+    <div class="card-header">
+        <h2><%= @adventure.name %></h2>
+    </div>
+     <div class="card-body">
+        <h4 class="card-title"><%= @adventure.location.city%>, <%= @adventure.location.state %></h4>
 
-<h3><%= @adventure.name %></h3>
+<h6 class="card-text">Recommendation / Notes:</h6>
+<p><%= @adventure.recommendation%></p>
 
-<p>Location: <%= @adventure.location.city%>, <%= @adventure.location.state %></p>
+<%= link_to 'Edit Adventure', edit_adventure_path(@adventure), type: "button", class: "btn btn-primary btn-sm text-info" %><br><br>
 
-<p>Recommendation / Notes: <br>
-<%= @adventure.recommendation%></p>
+<%= link_to 'Delete this Adventure', adventure_path(@adventure), method: :delete, type: "button", class: "btn btn-primary btn-sm text-info" %>
 
-<%= link_to 'Edit Adventure', edit_adventure_path(@adventure) %><br><br>
-
-<%= link_to 'Delete this Adventure', adventure_path(@adventure), method: :delete%>
-
+</div>

@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-#Added Personal Choice:
+#<-- Added Personal Choice: -->
 gem 'pry'
 gem 'devise'
 gem 'omniauth'
@@ -31,6 +31,7 @@ gem 'omniauth-github'
 gem 'dotenv-rails'
 gem 'thin'
 gem 'faker', '~> 2.8'
+gem 'bootstrap'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

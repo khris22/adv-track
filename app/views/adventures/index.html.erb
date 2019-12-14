@@ -1,11 +1,15 @@
 <h2><%= current_user.username %>'s  Adventures:</h2>
-<table>
+<% if !@location %>
+    <%= link_to 'Add a New Adventure', new_adventure_path, type: "button", class: "btn btn-outline-primary" %>
+    <%= link_to 'Show LOCATIONS', locations_path, type: "button", class: "btn btn-outline-primary"%>
+<% end %>
+<p><table class="table table-striped">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Adventure</th>
-            <th>City</th>
-            <th>State</th>
+            <th scope="col">Date</th>
+            <th scope="col">Adventure</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
         </tr>
     </thead>
     <tbody>
@@ -19,22 +23,21 @@
         </tr>
         <% end %>
     </tbody>
-</table><br><br>
-
-<% if !@location %>
-    <%= link_to 'Add a New Adventure', new_adventure_path %><br><br>
-    <%= link_to 'Show LOCATIONS', locations_path %><br><br>
-    <h4>Wishlist:</h4>
-        <% @wishlists.each do |wishlist| %>  
-        <li><%= link_to wishlist.name, adventure_path(wishlist) %> - <%= wishlist.location.state%></li>
-    <% end %>
-<% end %>
+</table></p><br>
 
 <%# for nested routes %>
 <% if @location %>
-    <%= link_to 'NESTED ROUTE: Add a New Adventure', new_location_adventure_path %>
+    <center><p><%= link_to 'Add a new Adventure at this Location', new_location_adventure_path, class: "btn btn-primary" %></p></center>
 <% end %>
 
 <%# link_to adventure.location.state if adventure.location, location_path(adventure.location) %>
 <%# try %>
+<% if !@location %>
+    <h4>WISHLISTS:</h4>
+        <% @wishlists.each do |wishlist| %>
+        <ul class="list-group list-group-flush">  
+            <li class="list-group-item"><%= link_to wishlist.name, adventure_path(wishlist) %> - <%= wishlist.location.state%></li>
+        </ul>
+    <% end %><br>
+<% end %>
 
