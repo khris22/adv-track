@@ -75,7 +75,6 @@ class AdventuresController < ApplicationController
     end
 
     def redirect_if_wrong_user
-        # binding.pry
         if current_user != @adventure.user
             flash[:error] = "You are not authorized to edit ot delete this adventure!"
             redirect_to adventures_path

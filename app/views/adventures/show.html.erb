@@ -5,16 +5,13 @@
      <div class="card-body">
         <h4 class="card-title"><%= @adventure.location.city%>, <%= @adventure.location.state %></h4>
 
-<h6 class="card-text">Recommendation / Notes:</h6>
-<p><%= @adventure.recommendation%></p>
+    <h6 class="card-text">Recommendation / Notes:</h6>
+        <p><%= @adventure.recommendation%></p>
 
+    <p>Created on: <%= @adventure.created_at.strftime("%B %d, %Y, %A") %><br>
+       Updated on: <%= @adventure.updated_at.strftime("%B %d, %Y, %A") %></p>
 
-<p>Created on: <%= @adventure.created_at.strftime("%B %d, %Y, %A") %><br>
-Updated on: <%= @adventure.updated_at.strftime("%B %d, %Y, %A") %></p>
+    <%= link_to 'Edit Adventure', edit_adventure_path(@adventure), type: "button", class: "btn btn-primary btn-sm text-info" %><br><br>
 
-
-<%= link_to 'Edit Adventure', edit_adventure_path(@adventure), type: "button", class: "btn btn-primary btn-sm text-info" %><br><br>
-
-<%= link_to 'Delete this Adventure', adventure_path(@adventure), method: :delete, type: "button", class: "btn btn-primary btn-sm text-info" %>
-
+    <%= link_to 'Delete this Adventure', adventure_path(@adventure), method: :delete, type: "button", class: "btn btn-primary btn-sm text-info" %>
 </div>

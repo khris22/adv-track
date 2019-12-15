@@ -15,7 +15,7 @@ Specs:
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
         <!-- Validated presence & uniqueness in User, Adventure & Location model -->
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-        <!-- created 3 scope methods for Adventure. (is_wishlist, adventure_done & default scope for DESC order) -->
+        <!-- created 3 scope methods for Adventure. (is_wishlist, adventure_done & default scope for DESC order) model = Adventure, method name = #is_wishlist, URL to see the working feature = /adventures -->
 - [x] Include signup (how e.g. Devise) 
 - [x] Include login (how e.g. Devise)
 - [x] Include logout (how e.g. Devise)
@@ -30,8 +30,8 @@ Specs:
         <!-- Validation display on Sign Up & Log In, Adventure form & Location form -->
 
 Confirm:
-- [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
+- [x] The application is pretty DRY
+- [x] Limited logic in controllers
 - [x] Views use helper methods if appropriate
         <!-- Added helper methods for current_user and for options for list of states -->
 - [x] Views use partials if appropriate

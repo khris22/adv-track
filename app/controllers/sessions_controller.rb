@@ -21,7 +21,6 @@ class SessionsController < ApplicationController
     end
 
     def ghcreate
-        # binding.pry
        if @user = User.find_or_create_by(auth_id: auth['uid']) do |u|
                 u.username = auth['info']['name']
                 u.email = auth['info']['email']
@@ -38,7 +37,6 @@ class SessionsController < ApplicationController
     def destroy
         session.destroy
         # session.clear
-        # session.delete(:user_id)
         flash[:notice] = "You have successfully logged out!"
         redirect_to root_path
     end

@@ -20,25 +20,24 @@
         <!-- NAV BAR -->
         <%# render 'navbar' %>
         <ul class="nav justify-content-center">
-        <% if logged_in? %>
-        <li class="nav-item">
-          <%= link_to 'Home', adventures_path, class: "nav-link active" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Log Out', logout_path, class: "nav-link active"  %>
-        <% end %> 
-        </li>
+          <% if logged_in? %>
+            <li class="nav-item">
+              <%= link_to 'Home', adventures_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Log Out', logout_path, class: "nav-link active"  %>
+            <% end %> 
+            </li>
         </ul>
         <!-- Flash Messages -->
         <%# render './flash_messages' %>
         
         <% flash.keys.each do |type| %>
-        <div class="alert alert-danger" role="alert">
-        <h6><%= flash[type] %></h6>
-        </div>
+          <div class="alert alert-danger" role="alert">
+            <h6><%= flash[type] %></h6>
+          </div>
         <% end %>
         
-
         <!-- Other views info -->
         <%= yield %>
 
