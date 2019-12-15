@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   #nested
   resources :locations, only: [:index, :show, :new, :create] do
-    resources :adventures, only: [:index, :new, :create, :show]
+    resources :adventures, only: [:index, :new, :create, :show, :edit]
     # resources :categories
   end
 

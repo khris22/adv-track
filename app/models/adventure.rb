@@ -6,7 +6,7 @@ class Adventure < ApplicationRecord
     # accepts_nested_attributes_for :location
     def location_attributes=(attributes)
         location = Location.find_or_create_by(attributes)
-        self.location = location if location.valid?
+        self.location = location #if location.valid? 
     end
 
     #ActiveRecord Scope
@@ -19,4 +19,6 @@ class Adventure < ApplicationRecord
 
     validates :name, :recommendation, presence: true
     validates :name, uniqueness: true
+    validates :location_id, presence: true
+    validates_associated :location
 end

@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
     def home
+        if logged_in?
+            redirect_to adventures_path
+        end
     end
 
     def new

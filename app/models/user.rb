@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :adventures
+    has_many :adventures, dependent: :destroy
     has_many :locations, through: :adventures
 
     validates :username, :email, presence: true, unless: :auth_id

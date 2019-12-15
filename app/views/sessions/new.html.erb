@@ -1,14 +1,15 @@
 <h1>Log In</h1>
-
+<div class="container">
 <%= flash[:error] %>
 
 <%= form_for @user, url: login_path do |f| %>
 
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+    <p><%= f.label :username %>
+    <%= f.text_field :username, required: true %></p>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <p><%= f.label :password %>
+    <%= f.password_field :password, required: true %></p>
 
-    <%= f.submit 'Log In'%>
+    <p><%= f.submit 'Log In'%></p>
 <% end %>
+</div>

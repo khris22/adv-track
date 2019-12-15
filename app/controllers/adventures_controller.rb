@@ -4,7 +4,7 @@ class AdventuresController < ApplicationController
     
 
     def index
-        @wishlists = current_user.adventures.is_wishlist #scope
+            @wishlists = current_user.adventures.is_wishlist #scope
         if set_location
             @adventures = @location.adventures.adventure_done #scope
         else
@@ -29,6 +29,9 @@ class AdventuresController < ApplicationController
             @adventure.user = current_user
             if @adventure.save
                 redirect_to location_adventure_path(@adventure.location, @adventure)
+            else
+
+                render 'new'
             end
         else #not nested   
             @adventure = current_user.adventures.build(adventure_params)
@@ -72,6 +75,7 @@ class AdventuresController < ApplicationController
     end
 
     def redirect_if_wrong_user
+        # binding.pry
         if current_user != @adventure.user
             flash[:error] = "You are not authorized to edit ot delete this adventure!"
             redirect_to adventures_path

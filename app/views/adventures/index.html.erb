@@ -1,8 +1,8 @@
-<h2><%= current_user.username %>'s  Adventures:</h2>
-<% if !@location %>
-    <%= link_to 'Add a New Adventure', new_adventure_path, type: "button", class: "btn btn-outline-primary" %>
-    <%= link_to 'Show LOCATIONS', locations_path, type: "button", class: "btn btn-outline-primary"%>
-<% end %>
+<h2><%= current_user.username %>'s  Adventure Log</h2>
+    <% if !@location %>
+        <%= link_to 'Add a New Adventure', new_adventure_path, type: "button", class: "btn btn-outline-primary" %>
+        <%= link_to 'Show LOCATIONS', locations_path, type: "button", class: "btn btn-outline-primary"%>
+    <% end %>
 <p><table class="table table-striped">
     <thead>
         <tr>
@@ -15,10 +15,17 @@
     <tbody>
         <% @adventures.each do |adventure| %>
         <tr>
-            <td><%= adventure.created_at.strftime("%B %d, %Y, %A") %></td> 
-            <td><%= link_to adventure.name , adventure_path(adventure) %></td>
-            <td><%= adventure.location.try(:city) %></td>
-            <td><%= adventure.location.try(:state) %></td>
+            <td><%= adventure.created_at.strftime("%B %d, %Y, %A") %></td>
+            <td>
+                <% if @location  %>
+                    <%= link_to adventure.name , location_adventure_path(adventure.location, adventure) %>
+                <% end %>
+                <% if !@location  %>
+                    <%= link_to adventure.name , adventure_path(adventure) %>
+                <% end %>
+            </td>            
+            <td><%= adventure.location.city %></td>
+            <td><%= adventure.location.state %></td>
             <%# link_to adventure.location.try(:state), location_path(adventure.location) %>
         </tr>
         <% end %>
@@ -30,14 +37,11 @@
     <center><p><%= link_to 'Add a new Adventure at this Location', new_location_adventure_path, class: "btn btn-primary" %></p></center>
 <% end %>
 
-<%# link_to adventure.location.state if adventure.location, location_path(adventure.location) %>
-<%# try %>
-<% if !@location %>
-    <h4>WISHLISTS:</h4>
-        <% @wishlists.each do |wishlist| %>
-        <ul class="list-group list-group-flush">  
-            <li class="list-group-item"><%= link_to wishlist.name, adventure_path(wishlist) %> - <%= wishlist.location.state%></li>
-        </ul>
-    <% end %><br>
-<% end %>
+<h4>WISHLISTS:</h4>
+<% @wishlists.each do |wishlist| %>
+    <ul class="list-group list-group-flush">  
+        <li class="list-group-item"><%= link_to wishlist.name, adventure_path(wishlist) %> - <%= wishlist.location.state%></li>
+    </ul>
+<% end %><br>
+
 

@@ -23,6 +23,7 @@ Specs:
         <!-- Created Login with Github -->
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
         <!-- /locations/:id/adventures -->
+        <!-- /locations/:id/adventures/:id -->
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
         <!-- /locations/:id/adventures/new -->
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
