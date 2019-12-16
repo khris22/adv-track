@@ -2,7 +2,11 @@ class LocationsController < ApplicationController
     before_action :authenticate_user
 
     def index
-        @locations = current_user.locations.uniq
+        @current_user_locations = current_user.locations.distinct
+    end
+
+    def visited_locations
+        @locations = Location.all
     end
 
     def new

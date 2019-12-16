@@ -5,4 +5,5 @@ class Location < ApplicationRecord
     validates :city, :state, presence: true
 
     default_scope { order(city: :asc)}
+
 end

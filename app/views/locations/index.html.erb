@@ -1,4 +1,4 @@
-<h3>You have a total of <%= @locations.count %> locations in your log: </h3>
+<h3>You have a total of <%= @current_user_locations.count %> locations in your log: </h3>
 
 <table class="table">
     <thead>
@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <% @locations.each do |location| %>
+        <% @current_user_locations.each do |location| %>
         <tr>
             <td><%= location.city %>, <%= location.state %></td>
             <td><%=link_to "Show Adventures", location_adventures_path(location) %></td>
@@ -16,6 +16,8 @@
         <% end %>
     </tbody>
 </table><br><br>
+
+<p><%= link_to 'See all the other locations TrekIt Users have in their Log', visited_locations_path %></p>
 
     <%# location.adventures each do |adv| %>
     <%# location.city %>

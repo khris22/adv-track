@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/auth/github/callback' => 'sessions#ghcreate'
 
+  get '/visited_locations' => 'locations#visited_locations'
+
   resources :adventures
   # resources :locations
   resources :users
