@@ -1,7 +1,7 @@
 class Adventure < ApplicationRecord
     belongs_to :user
     belongs_to :location
-    # belongs_to :category 
+    belongs_to :category 
 
     # accepts_nested_attributes_for :location
     def location_attributes=(attributes)

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'sessions#home'
 
   get '/signup' => 'users#new'
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
   resources :adventures
   # resources :locations
   resources :users
+  resources :categories
 
   #nested
   resources :locations, only: [:index, :show, :new, :create] do
