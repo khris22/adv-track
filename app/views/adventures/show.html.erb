@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-header">
         <h2><%= @adventure.name %></h2>
+       <%=  @adventure.category.adv_type %>
     </div>
      <div class="card-body">
         <h4 class="card-title"><%= @adventure.location.city%>, <%= @adventure.location.state %></h4>

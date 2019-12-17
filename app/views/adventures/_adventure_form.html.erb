@@ -1,8 +1,19 @@
 <%# form_for [@adventure.location, @adventure] do |f| %>
 <%= form_for @adventure do |f| %>
-    <%= f.hidden_field :location_id %> 
+    <%= f.hidden_field :location_id %>
+    <%= f.hidden_field :category_id %>  
 
     <%= render partial: 'layouts/error_messages', locals: {object: @adventure} %>
+
+    <div class="form-group">
+    <p> Please select an adventure category in the dropdown menu: </p>
+    <%= f.fields_for :category do |adv_type| %>
+        <%= adv_type.collection_select :id, Category.all, :id, :adv_type, {include_blank: 'Create a new one:  ', selected: @adventure.category_id, prompt: true} %>
+        <%= adv_type.text_field :adv_type, placeholder: "Please enter your new Category here", class: "form-group col-md-6" %>
+        <% end %>
+  
+    </div>
+
     <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name, required: true, class: "form-control" %>
@@ -29,9 +40,7 @@
         <div class="form-group">
             <%= adv.label :city %>
             <%= adv.text_field :city, required: true, class: "form-group col-md-6" %>
-        </div>
 
-        <div class="form-group">
             <%= adv.label :state %>
             <%= adv.select :state, options_for_states, :prompt => 'Please choose one', required: true %>
         </div>

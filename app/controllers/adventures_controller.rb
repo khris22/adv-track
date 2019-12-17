@@ -19,6 +19,7 @@ class AdventuresController < ApplicationController
         else #not nested
             @adventure = Adventure.new
             @adventure.build_location #bec of belongs_to, will return nil if the adventure has no location
+            # @adventure.build_category
         end
     end
 
@@ -82,7 +83,7 @@ class AdventuresController < ApplicationController
     end
 
     def adventure_params
-        params.require(:adventure).permit(:user_id, :location_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state, :id])
+        params.require(:adventure).permit(:user_id, :location_id, :category_id, :name, :recommendation, :is_wishlist, location_attributes: [:city, :state, :id], category_attributes: [:adv_type])
     end
 
 end

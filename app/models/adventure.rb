@@ -3,6 +3,12 @@ class Adventure < ApplicationRecord
     belongs_to :location
     belongs_to :category 
 
+    # accepts_nested_attributes_for :category
+    def category_attributes=(attributes)
+        category = Category.find_or_create_by(attributes)
+        self.category = category #if location.valid? 
+    end
+
     # accepts_nested_attributes_for :location
     def location_attributes=(attributes)
         location = Location.find_or_create_by(attributes)
@@ -19,6 +25,6 @@ class Adventure < ApplicationRecord
 
     validates :name, :recommendation, presence: true
     validates :name, uniqueness: true
-    validates :location_id, presence: true
-    validates_associated :location
+    # validates :location_id, presence: true
+    validates_associated :location, :category
 end

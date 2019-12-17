@@ -17,15 +17,22 @@ boris = User.create(username: "bd", email:"b@mail.com", password:"0000")
     }])
 end
 
+adv_type = ["Hiking", "Camping", "Stargazing", "Walking", "Trail Running", "Surfing", "Golfing", "Fishing"]
+adv_type.each do |activity|
+    Category.create(adv_type: activity)
+end
+
 redrock = Adventure.create( 
     name: "Red Rock!!!" , 
     recommendation: "Ice Box Canyon has a great waterfall!",
-    user_id: khris.id,
-    location_id: 1)
+    user_id: steve.id,
+    location_id: 1,
+    category_id: 1)
 
 grandcanyon = Adventure.create( 
     name: "Super Awesome" , 
     recommendation: "must have 4x4, bring sunscreen",
-    user_id: khris.id,
-    location_id: 2)
+    user_id: steve.id,
+    location_id: 2,
+    category_id: 2)
 

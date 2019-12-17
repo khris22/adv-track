@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_055513) do
+ActiveRecord::Schema.define(version: 2019_12_16_134434) do
 
   create_table "adventures", force: :cascade do |t|
     t.integer "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_055513) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_wishlist", default: false
+    t.integer "category_id"
   end
 
   create_table "categories", force: :cascade do |t|
