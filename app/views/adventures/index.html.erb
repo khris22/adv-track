@@ -37,11 +37,12 @@
     <center><p><%= link_to 'Add a new Adventure at this Location', new_location_adventure_path, class: "btn btn-primary" %></p></center>
 <% end %>
 
-<h4>WISHLISTS:</h4>
-<% @wishlists.each do |wishlist| %>
-    <ul class="list-group list-group-flush">  
-        <li class="list-group-item"><%= link_to wishlist.name, adventure_path(wishlist) %> - <%= wishlist.location.state%></li>
-    </ul>
+<% if !@location %>
+    <h4>WISHLISTS:</h4>
+    <% @wishlists.each do |wishlist| %>
+        <ul class="list-group list-group-flush">  
+            <li class="list-group-item"><%= link_to wishlist.name, adventure_path(wishlist) %> - <%= wishlist.location.state%></li>
+        </ul>
+    <% end %>
 <% end %><br>
-
 
