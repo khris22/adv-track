@@ -1,7 +1,7 @@
 class AdventuresController < ApplicationController
     before_action :authenticate_user 
-    before_action :set_adventure, :redirect_if_wrong_user, only: [:edit, :update, :destroy]
-    
+    before_action :set_adventure, only: [:show, :edit, :update, :destroy]
+    before_action :redirect_if_wrong_user, only: [:edit, :update, :destroy]
 
     def index
             @wishlists = current_user.adventures.is_wishlist #scope
@@ -44,11 +44,12 @@ class AdventuresController < ApplicationController
     end
 
     def show
-        set_adventure
+        if !@adventure 
+            redirect_to adventures_path
+        end
     end
 
     def edit
-        set_adventure
     end
 
     def update
@@ -71,7 +72,8 @@ class AdventuresController < ApplicationController
     end
 
     def set_adventure
-        @adventure = Adventure.find(params[:id])
+        @adventure = Adventure.find_by_id(params[:id]) 
+        
     end
 
     def redirect_if_wrong_user

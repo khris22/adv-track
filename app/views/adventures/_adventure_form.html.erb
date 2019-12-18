@@ -23,8 +23,11 @@
     <%# f.label :location_id, "Select a Location" %>
     <!--collecion_select :###_id, ALL, :value, :display_value -->
     <%# f.collection_select :location_id, Location.all, :id, :state,  prompt: true %>
-
-<p><h5>Adventure Location:</h5></p>
+    
+<% if @location %>
+    <p>Enjoy your new adventure in <%= @location.city %></p>
+<% else %>
+    <p><h5>Adventure Location:</h5></p>
     <%= f.fields_for :location do |adv| %>
         <div class="form-group">
             <%= adv.label :city %>
@@ -36,6 +39,7 @@
             <%= adv.select :state, options_for_states, :prompt => 'Please choose one', required: true %>
         </div>
     <% end %>
+<% end %>
  
     <p><%= f.submit class: "btn btn-primary" %></p>
 <% end %>
