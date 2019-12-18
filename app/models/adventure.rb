@@ -18,7 +18,7 @@ class Adventure < ApplicationRecord
     scope :adventure_done, -> { where(is_wishlist: false)}
 
     validates :name, :recommendation, presence: true
-    validates :name, uniqueness: true
+    # validates :name, uniqueness: true
     validates :location_id, presence: true
     validates_associated :location
 end
