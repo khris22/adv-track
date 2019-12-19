@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     def home
+        @random_adventure = Adventure.all.shuffle.first
         if logged_in?
             redirect_to adventures_path
         end
