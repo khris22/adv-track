@@ -4,6 +4,8 @@
 
 TrekIt is a Rails application that allows users who like doing outdoor activities to track all their adventures. To be able to use the site, the user must sign up first with a unique username, email and password. It will then redirect you to your homepage once you have successfully signed up.  
 
+See this project live: https://adventuretrack.herokuapp.com/
+
 ## Installation
 
 Clone this repo and run `bundle install`. Run `rake db:migrate` to be able for the schema of this project to load. After that, run `rails s`, click or copy & paste the domain in your chosen web browser. 
