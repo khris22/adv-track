@@ -2,7 +2,9 @@ class LocationsController < ApplicationController
     before_action :authenticate_user
 
     def index
-        @current_user_locations = current_user.locations.distinct
+        # byebug
+        # @current_user_locations = current_user.locations.distinct
+        @current_user_locations = current_user.locations
     end
 
     def visited_locations
