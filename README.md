@@ -8,6 +8,8 @@ See this project live: https://adventuretrack.herokuapp.com/
 
 Demo: https://youtu.be/sFZfDMhY5_U
 
+Blog Post: https://khris22.github.io/trekking_it_on_rails
+
 ## Installation
 
 Clone this repo and run `bundle install`. Run `rake db:migrate` to be able for the schema of this project to load. After that, run `rails s`, click or copy & paste the domain in your chosen web browser. 
